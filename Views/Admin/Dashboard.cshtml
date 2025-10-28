@@ -1,0 +1,106 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container">
+    <h2 class="mb-4"><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h2>
+
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card shadow-sm bg-primary text-white">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fa-3x mb-3"></i>
+                    <h5>Total Users</h5>
+                    <h2>@ViewBag.TotalUsers</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm bg-success text-white">
+                <div class="card-body text-center">
+                    <i class="fas fa-tractor fa-3x mb-3"></i>
+                    <h5>Total Farmers</h5>
+                    <h2>@ViewBag.TotalFarmers</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm bg-info text-white">
+                <div class="card-body text-center">
+                    <i class="fas fa-shopping-basket fa-3x mb-3"></i>
+                    <h5>Total Buyers</h5>
+                    <h2>@ViewBag.TotalBuyers</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm bg-warning text-white">
+                <div class="card-body text-center">
+                    <i class="fas fa-leaf fa-3x mb-3"></i>
+                    <h5>Total Products</h5>
+                    <h2>@ViewBag.TotalProducts</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-envelope fa-3x text-secondary mb-3"></i>
+                    <h5>Total Inquiries</h5>
+                    <h2>@ViewBag.TotalInquiries</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-clock fa-3x text-danger mb-3"></i>
+                    <h5>Pending Inquiries</h5>
+                    <h2>@ViewBag.PendingInquiries</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                    <h5>Manage Users</h5>
+                    <p>View, edit, and delete users</p>
+                    <a asp-action="Users" class="btn btn-primary">
+                        <i class="fas fa-eye"></i> View Users
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-box fa-3x text-success mb-3"></i>
+                    <h5>Manage Products</h5>
+                    <p>View and manage all products</p>
+                    <a asp-action="Products" class="btn btn-success">
+                        <i class="fas fa-eye"></i> View Products
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-envelope fa-3x text-info mb-3"></i>
+                    <h5>Manage Inquiries</h5>
+                    <p>View all buyer inquiries</p>
+                    <a asp-action="Inquiries" class="btn btn-info">
+                        <i class="fas fa-eye"></i> View Inquiries
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

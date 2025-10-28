@@ -1,0 +1,68 @@
+@model IEnumerable<FarmerMarket.Models.Inquiry>
+@{
+    ViewData["Title"] = "My Inquiries";
+}
+
+<div class="container">
+    <h2 class="mb-4"><i class="fas fa-envelope"></i> My Inquiries</h2>
+
+    @if (Model.Any())
+    {
+        <div class="row">
+            @foreach (var inquiry in Model)
+            {
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">@inquiry.Product?.ProductName</h5>
+                            <p class="mb-2">
+                                <strong>Farmer:</strong> @inquiry.Product?.Farmer?.Name<br>
+                                <strong>Contact:</strong> @inquiry.Product?.Farmer?.Phone
+                            </p>
+                            <p class="mb-2">
+                                <strong>Required Quantity:</strong> @inquiry.RequiredQuantity
+                            </p>
+                            @if (!string.IsNullOrEmpty(inquiry.Message))
+                            {
+                                <p class="mb-2">
+                                    <strong>Message:</strong> @inquiry.Message
+                                </p>
+                            }
+                            <p class="mb-2">
+                                <strong>Status:</strong>
+                                @if (inquiry.Status == "Pending")
+                                {
+                                    <span class="badge bg-warning">Pending</span>
+                                }
+                                else if (inquiry.Status == "Responded")
+                                {
+                                    <span class="badge bg-success">Responded</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Closed</span>
+                                }
+                            </p>
+                            <p class="text-muted">
+                                <small>Sent on: @inquiry.CreatedAt.ToString("dd MMM yyyy")</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i> You haven't sent any inquiries yet.
+            <a asp-controller="Buyer" asp-action="Browse">Browse products</a> to start.
+        </div>
+    }
+
+    <div class="mt-3">
+        <a asp-action="Browse" class="btn btn-primary">
+            <i class="fas fa-shopping-basket"></i> Browse Products
+        </a>
+    </div>
+</div>

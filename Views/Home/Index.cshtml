@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <div class="jumbotron bg-light p-5 rounded-3 mb-4">
+        <h1 class="display-4">@ViewBag.Greeting</h1>
+        <img src="@ViewBag.GreetingImage" alt="Greeting" class="img-fluid rounded shadow mb-3" style="max-height: 300px; object-fit: cover; width: 100%;" onerror="this.src='/images/placeholder.jpg'">
+        <p class="lead">Welcome to Farmer Market Direct Connect</p>
+        <p>Connecting farmers directly with buyers - eliminating middlemen and increasing profits</p>
+        <hr class="my-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body text-center">
+                        <i class="fas fa-users fa-3x text-success mb-3"></i>
+                        <h3>@ViewBag.TotalFarmers</h3>
+                        <p>Registered Farmers</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body text-center">
+                        <i class="fas fa-leaf fa-3x text-primary mb-3"></i>
+                        <h3>@ViewBag.TotalProducts</h3>
+                        <p>Fresh Products Available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="btn btn-success btn-lg" asp-controller="Buyer" asp-action="Browse" role="button">
+            <i class="fas fa-shopping-basket"></i> Browse Products
+        </a>
+        <a class="btn btn-primary btn-lg" asp-controller="Auth" asp-action="Register" role="button">
+            <i class="fas fa-user-plus"></i> Join Now
+        </a>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-handshake fa-3x text-success mb-3"></i>
+                    <h5>Direct Connection</h5>
+                    <p>Connect directly with farmers without any middlemen</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-rupee-sign fa-3x text-warning mb-3"></i>
+                    <h5>Better Prices</h5>
+                    <p>Get fresh produce at fair prices, benefiting both farmers and buyers</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-leaf fa-3x text-primary mb-3"></i>
+                    <h5>Fresh & Organic</h5>
+                    <p>Access to fresh, organic produce directly from farms</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

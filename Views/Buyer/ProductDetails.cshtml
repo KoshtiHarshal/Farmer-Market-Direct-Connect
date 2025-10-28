@@ -1,0 +1,88 @@
+@model FarmerMarket.Models.Product
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Browse">Products</a></li>
+            <li class="breadcrumb-item active">@Model.ProductName</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-6">
+            @if (!string.IsNullOrEmpty(Model.ImagePath))
+            {
+                <img src="@Model.ImagePath" class="img-fluid rounded shadow" alt="@Model.ProductName">
+            }
+            else
+            {
+                <img src="/images/placeholder.jpg" class="img-fluid rounded shadow" alt="No image">
+            }
+        </div>
+        <div class="col-md-6">
+            <h2>@Model.ProductName</h2>
+            <p class="lead">
+                <span class="badge bg-info">@Model.Category</span>
+                @if (Model.IsOrganic)
+                {
+                    <span class="badge bg-success"><i class="fas fa-leaf"></i> Organic</span>
+                }
+            </p>
+
+            <div class="card shadow-sm mb-3">
+                <div class="card-body">
+                    <h3 class="text-success">@ViewBag.FormattedPrice</h3>
+                    <p class="mb-1"><strong>Available Quantity:</strong> @Model.AvailableQuantity @Model.Unit</p>
+                    <p class="mb-1"><strong>Total Value:</strong> ₹@ViewBag.TotalValue</p>
+                    @if (ViewBag.IsLowStock)
+                    {
+                        <p class="text-danger"><i class="fas fa-exclamation-triangle"></i> Low Stock!</p>
+                    }
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-3">
+                <div class="card-body">
+                    <h5><i class="fas fa-user"></i> Farmer Details</h5>
+                    <p class="mb-1"><strong>Name:</strong> @Model.Farmer?.Name</p>
+                    <p class="mb-1"><strong>Location:</strong> @Model.Farmer?.City, @Model.Farmer?.State</p>
+                    <p class="mb-1"><strong>Contact:</strong> @Model.Farmer?.Phone</p>
+                </div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.Description))
+            {
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <h5><i class="fas fa-info-circle"></i> Description</h5>
+                        <p>@Model.Description</p>
+                    </div>
+                </div>
+            }
+
+            <!-- Send Inquiry Form -->
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5><i class="fas fa-envelope"></i> Send Inquiry</h5>
+                    <form asp-controller="Buyer" asp-action="SendInquiry" method="post">
+                        <input type="hidden" name="ProductId" value="@Model.ProductId" />
+                        <div class="mb-3">
+                            <label for="RequiredQuantity" class="form-label">Required Quantity (@Model.Unit)</label>
+                            <input type="number" name="RequiredQuantity" class="form-control" step="0.01" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="Message" class="form-label">Message (Optional)</label>
+                            <textarea name="Message" class="form-control" rows="3" placeholder="Any specific requirements..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">
+                            <i class="fas fa-paper-plane"></i> Send Inquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

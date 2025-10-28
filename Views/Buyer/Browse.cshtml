@@ -1,0 +1,96 @@
+@model IEnumerable<FarmerMarket.Models.Product>
+@{
+    ViewData["Title"] = "Browse Products";
+}
+
+<div class="container">
+    <h2 class="mb-4"><i class="fas fa-shopping-basket"></i> Browse Fresh Products</h2>
+
+    <!-- Practical 4: Query string filtering -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form method="get" asp-action="Browse">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <select name="category" class="form-control">
+                            <option value="">All Categories</option>
+                            <option value="Vegetable" selected="@(ViewBag.CurrentCategory == "Vegetable")">Vegetable</option>
+                            <option value="Fruit" selected="@(ViewBag.CurrentCategory == "Fruit")">Fruit</option>
+                            <option value="Grain" selected="@(ViewBag.CurrentCategory == "Grain")">Grain</option>
+                            <option value="Dairy" selected="@(ViewBag.CurrentCategory == "Dairy")">Dairy</option>
+                            <option value="Other" selected="@(ViewBag.CurrentCategory == "Other")">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="search" class="form-control" placeholder="Search products..." value="@ViewBag.CurrentSearch" />
+                    </div>
+                    <div class="col-md-3">
+                        <select name="sortBy" class="form-control">
+                            <option value="">Sort By</option>
+                            <option value="price_low" selected="@(ViewBag.CurrentSort == "price_low")">Price: Low to High</option>
+                            <option value="price_high" selected="@(ViewBag.CurrentSort == "price_high")">Price: High to Low</option>
+                            <option value="newest" selected="@(ViewBag.CurrentSort == "newest")">Newest First</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-filter"></i> Filter
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Practical 5: Bootstrap card grid -->
+    @if (Model.Any())
+    {
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var product in Model)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        @if (!string.IsNullOrEmpty(product.ImagePath))
+                        {
+                            <img src="@product.ImagePath" class="card-img-top" alt="@product.ProductName" style="height: 200px; object-fit: cover;">
+                        }
+                        else
+                        {
+                            <img src="/images/placeholder.jpg" class="card-img-top" alt="No image" style="height: 200px; object-fit: cover;">
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@product.ProductName</h5>
+                            <p class="card-text text-muted">@product.Category</p>
+                            <h4 class="text-success">₹@product.Price / @product.Unit</h4>
+                            <p class="mb-2">
+                                <small class="text-muted">
+                                    <i class="fas fa-user"></i> @product.Farmer?.Name
+                                </small>
+                            </p>
+                            @if (product.IsOrganic)
+                            {
+                                <span class="badge bg-success mb-2">
+                                    <i class="fas fa-leaf"></i> Organic
+                                </span>
+                            }
+                            <p class="card-text">
+                                <small>Available: @product.AvailableQuantity @product.Unit</small>
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <a asp-action="ProductDetails" asp-route-id="@product.ProductId" class="btn btn-primary w-100">
+                                <i class="fas fa-eye"></i> View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i> No products found matching your criteria.
+        </div>
+    }
+</div>

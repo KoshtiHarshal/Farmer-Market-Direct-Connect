@@ -1,0 +1,97 @@
+@model FarmerMarket.Models.Product
+@{
+    ViewData["Title"] = "Add Product";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-body">
+                <h3 class="mb-4"><i class="fas fa-plus-circle"></i> Add New Product</h3>
+                <form asp-action="AddProduct" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="ProductName" class="form-label"></label>
+                            <input asp-for="ProductName" class="form-control" placeholder="e.g., Fresh Tomatoes" />
+                            <span asp-validation-for="ProductName" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Category" class="form-label"></label>
+                            <select asp-for="Category" class="form-control">
+                                <option value="">-- Select Category --</option>
+                                <option value="Vegetable">Vegetable</option>
+                                <option value="Fruit">Fruit</option>
+                                <option value="Grain">Grain</option>
+                                <option value="Dairy">Dairy</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <span asp-validation-for="Category" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Price" class="form-label"></label>
+                            <input asp-for="Price" class="form-control" type="number" step="0.01" placeholder="Price" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Unit" class="form-label"></label>
+                            <select asp-for="Unit" class="form-control">
+                                <option value="">-- Select Unit --</option>
+                                <option value="Kg">Kg</option>
+                                <option value="Quintal">Quintal</option>
+                                <option value="Liter">Liter</option>
+                                <option value="Dozen">Dozen</option>
+                                <option value="Piece">Piece</option>
+                            </select>
+                            <span asp-validation-for="Unit" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="AvailableQuantity" class="form-label"></label>
+                            <input asp-for="AvailableQuantity" class="form-control" type="number" step="0.01" placeholder="Quantity" />
+                            <span asp-validation-for="AvailableQuantity" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label"></label>
+                        <textarea asp-for="Description" class="form-control" rows="3" placeholder="Describe your product..."></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="imageFile" class="form-label">Product Image</label>
+                        <input type="file" name="imageFile" id="imageFile" class="form-control" accept="image/*" />
+                        <small class="text-muted">Upload a clear image of your product (JPG, PNG)</small>
+                    </div>
+
+                    <div class="mb-3 form-check">
+                        <input asp-for="IsOrganic" class="form-check-input" type="checkbox" />
+                        <label asp-for="IsOrganic" class="form-check-label">
+                            This is an organic product
+                        </label>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="fas fa-save"></i> Add Product
+                        </button>
+                        <a asp-action="Dashboard" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to Dashboard
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
