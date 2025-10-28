@@ -87,3 +87,109 @@ This project demonstrates all 15 required practical concepts:
 ### Steps
 
 1. **Clone the repository**
+git clone https://github.com/YOUR-USERNAME/Farmer-Market-Direct-Connect.git
+cd Farmer-Market-Direct-Connect
+
+2. **Restore NuGet packages**
+dotnet restore
+
+3. **Create database**
+dotnet ef database update
+
+
+*Note: SQLite database will be automatically created with sample data*
+
+4. **Run the application**
+dotnet run
+
+5. **Open browser**
+- Navigate to: `http://localhost:5000` or `https://localhost:5001`
+
+---
+
+## 👤 Demo Credentials
+
+### Admin Account
+- **Email**: admin@farmermarket.com
+- **Password**: admin123
+
+### Farmer Account
+- **Email**: ramesh@gmail.com
+- **Password**: farmer123
+
+### Buyer Account
+- **Email**: suresh@gmail.com
+- **Password**: buyer123
+
+---
+
+## 📸 Screenshots
+
+### Home Page
+![Home Page](screenshots/home.png)
+
+### Farmer Dashboard
+![Farmer Dashboard](screenshots/farmer-dashboard.png)
+
+### Browse Products
+![Browse Products](screenshots/browse-products.png)
+
+### Admin Panel
+![Admin Panel](screenshots/admin-dashboard.png)
+
+---
+
+## 🎓 Academic Information
+
+- **Institution**: Asha M. Tarsadia Institute of Computer Science and Technology
+- **Course**: Web Technology with .NET
+- **Project Type**: College Practical Work
+- **Submission Date**: October 2025
+
+---
+
+## 🔮 Future Enhancements
+
+- SMS notifications for inquiries
+- Payment gateway integration
+- Mobile app development
+- Real-time chat between farmers and buyers
+- Multi-language support (Hindi, Gujarati)
+- Weather API integration
+- Market price comparison
+
+---
+
+## 📝 License
+
+This project is created for educational purposes as part of college coursework.
+
+---
+
+## 👨‍💻 Developer
+
+**Your Name**
+- College Roll No: [Your Roll Number]
+- Email: [Your Email]
+- LinkedIn: [Your LinkedIn Profile]
+
+---
+
+## 🙏 Acknowledgments
+
+- Thanks to my course instructor for guidance
+- Thanks to Asha M. Tarsadia Institute for providing resources
+- Inspiration from real-world agricultural challenges in Gujarat
+
+---
+
+## 📞 Contact
+
+For queries or suggestions, please reach out via:
+- Email: [Your Email]
+- GitHub Issues: [Issues Page Link]
+
+---
+
+**⭐ If you find this project helpful, please give it a star!**
+
